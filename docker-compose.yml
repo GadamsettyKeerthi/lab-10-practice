@@ -4,19 +4,19 @@ services:
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: docker
-      MYSQL_DATABASE: userexamdb
+      MYSQL_DATABASE: userdbexam1
     ports:
-      - "3307:3306"
+      - "3308:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
       - springboot-mysql-net
 
   backend:
-    image: gadamsettykeerthi/docker-backend1:latest
+    image: gadamsettykeerthi/docker-backend-2:latest
     container_name: springboot
     ports:
-      - "2025:2000"
+      - "2028:1953"
     depends_on:
       - mysqldb
     restart: on-failure
@@ -24,10 +24,10 @@ services:
       - springboot-mysql-net
 
   frontend:
-    image: gadamsettykeerthi/docker-frontend1:latest
+    image: gadamsettykeerthi/docker-frontend-2:latest
     container_name: react
     ports:
-      - "3000:80"
+      - "3002:80"
     depends_on:
       - backend
     restart: on-failure
